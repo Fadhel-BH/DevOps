@@ -9,7 +9,7 @@ pipeline {
                 
                 steps{
                     echo 'Pulling...';
-                    git branch: 'main',
+                    git branch: 'AlaBenHassine',
                     url: 'https://github.com/Fadhel-BH/DevOps.git',
                     credentialsId: 'd07792a9-ebc0-4cad-a007-92354abedd2c';
                 }
