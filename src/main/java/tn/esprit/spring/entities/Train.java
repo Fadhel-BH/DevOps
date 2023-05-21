@@ -19,6 +19,8 @@ public class Train implements Serializable {
 
     long codeTrain;
 
+    //alaBenHASSINE
+
     public long getCodeTrain() {
         return codeTrain;
     }
