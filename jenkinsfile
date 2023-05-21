@@ -22,7 +22,7 @@ pipeline {
             }
             stage('Unit-Test') {
                 steps {
-                    sh 'mvn -f DevOps/pom.xml clean test' 
+                    sh 'mvn -f pom.xml clean test' 
                 }
             //  post {
                 //  always {
