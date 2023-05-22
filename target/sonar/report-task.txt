@@ -1,0 +1,6 @@
+projectKey=sonarqube
+serverUrl=http://172.10.0.141:9000
+serverVersion=8.9.7.52159
+dashboardUrl=http://172.10.0.141:9000/dashboard?id=sonarqube
+ceTaskId=AYhCLdMS9j_tktIE0Sd8
+ceTaskUrl=http://172.10.0.141:9000/api/ce/task?id=AYhCLdMS9j_tktIE0Sd8
