@@ -24,17 +24,17 @@ pipeline {
                 steps {
                     sh 'mvn -f pom.xml clean test' 
                 }
-            } ,
+            } 
              stage('Sonar') {
             steps {
                sh 'mvn sonar:sonar -Dsonar.projectKey=devOps-project -Dsonar.login=2f0a6cb8549fbf8a3c4c41649b751fc41c194764'
             }
-        },
+        }
            stage('Package') {
             steps {
                 sh 'mvn package'
             }
-        }, stage('Deploy') {
+        } stage('Deploy') {
             steps {
                         nexusArtifactUploader(
                             nexusVersion: 'nexus3',
@@ -52,7 +52,7 @@ pipeline {
                             ]
                          )
             }
-        },
+        }
         stage('docker-build') {
             steps {
                 sh 'curl -u admin:admin -O http://localhost:8081/nexus/repository/devOps-project-releases/com/esprit/examen/tpAchatProject/1.0/tpAchatProject-1.0.jar'
