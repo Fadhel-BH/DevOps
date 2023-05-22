@@ -2,7 +2,8 @@ pipeline {
         
         agent any
         environment {
-            PATH = "/home/vagrant/maven/bin:$PATH"
+            MAVEN_HOME="/home/vagrant/maven/"
+            PATH="$PATH:$MAVEN_HOME/bin"
         }
         stages {
             stage('CHECKOUT GIT') {
