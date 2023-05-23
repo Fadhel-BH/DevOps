@@ -98,12 +98,12 @@ return cpt/1;
     @Transactional
     public void affecterTainAVoyageur(Long idVoyageur, Ville nomGareDepart, Ville nomGareArrivee, double heureDepart) {
 
-
-        System.out.println("taille test");
+         String taille = "taille";
+        System.out.println(taille + "test");
         Voyageur c = VoyageurRepository.findById(idVoyageur).get();
         List<Voyage> lesvoyages = new ArrayList<>();
         lesvoyages = voyageRepository.RechercheVoyage(nomGareDepart, nomGareDepart, heureDepart);
-        System.out.println("taille" + lesvoyages.size());
+        System.out.println(taille + lesvoyages.size());
         for (int i = 0; i < lesvoyages.size(); i++) {
             if (lesvoyages.get(i).getTrain().getNbPlaceLibre() != 0) {
                 lesvoyages.get(i).getMesVoyageurs().add(c);

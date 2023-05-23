@@ -22,24 +22,6 @@ public class VoyageurDTO {
     @ManyToMany(mappedBy = "mesVoyageurs")
     public List<Voyage> mesvoyages;
 
-    public Long getIdVoyageur() {
-        return idVoyageur;
-    }
 
-    public void setIdVoyageur(Long idVoyageur) {
-        this.idVoyageur = idVoyageur;
-    }
-
-    public String getNomVoyageur() {
-        return nomVoyageur;
-    }
-
-    public void setNomVoyageur(String nomVoyageur) {
-        this.nomVoyageur = nomVoyageur;
-    }
-
-    public VoyageurDTO() {
-        super();
-    }
 
 }
