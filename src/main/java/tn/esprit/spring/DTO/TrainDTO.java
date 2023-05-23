@@ -22,5 +22,14 @@ public class TrainDTO {
 
     private int nbPlaceLibre;
 
-
+    public int getNbPlaceLibreDTO() {
+        return nbPlaceLibre;
+    }
+    public void setNbPlaceLibreDTO(int nbPlaceLibre) {
+        this.nbPlaceLibre = nbPlaceLibre;
+    }
+    public void setEtat(etatTrain etat) {
+        this.etat = etat;
+    }
 }
+

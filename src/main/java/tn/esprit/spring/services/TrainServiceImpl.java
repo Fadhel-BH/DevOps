@@ -56,7 +56,7 @@ public class TrainServiceImpl implements ITrainService {
             for (int i = 0; i < listvoyage.size(); i++) {
                 System.out.println("gare" + nomGareDepart + "value" + listvoyage.get(0).getGareDepart());
                 if (listvoyage.get(i).getGareDepart() == nomGareDepart) {
-                    cpt = cpt + listvoyage.get(i).getTrain().getNbPlaceLibre();
+                    cpt = cpt + listvoyage.get(i).getTrain().getNbPlaceLibreDTO();
                     occ = occ + 1;
                     System.out.println("cpt " + cpt);
                 }
@@ -105,9 +105,9 @@ return cpt/1;
         lesvoyages = voyageRepository.RechercheVoyage(nomGareDepart, nomGareDepart, heureDepart);
         System.out.println(taille + lesvoyages.size());
         for (int i = 0; i < lesvoyages.size(); i++) {
-            if (lesvoyages.get(i).getTrain().getNbPlaceLibre() != 0) {
+            if (lesvoyages.get(i).getTrain().getNbPlaceLibreDTO() != 0) {
                 lesvoyages.get(i).getMesVoyageurs().add(c);
-                lesvoyages.get(i).getTrain().setNbPlaceLibre(lesvoyages.get(i).getTrain().getNbPlaceLibre() - 1);
+                lesvoyages.get(i).getTrain().setNbPlaceLibreDTO(lesvoyages.get(i).getTrain().getNbPlaceLibreDTO() - 1);
             } else
                 System.out.print("Pas de place disponible pour " + VoyageurRepository.findById(idVoyageur).get().getNomVoyageur());
             voyageRepository.save(lesvoyages.get(i));
@@ -123,7 +123,7 @@ return cpt/1;
         for (int i = 0; i < lesvoyages.size(); i++) {
             for (int j = 0; j < lesvoyages.get(i).getMesVoyageurs().size(); j++)
                 lesvoyages.get(i).getMesVoyageurs().remove(j);
-            lesvoyages.get(i).getTrain().setNbPlaceLibre(lesvoyages.get(i).getTrain().getNbPlaceLibre() + 1);
+            lesvoyages.get(i).getTrain().setNbPlaceLibreDTO(lesvoyages.get(i).getTrain().getNbPlaceLibreDTO() + 1);
             lesvoyages.get(i).getTrain().setEtat(etatTrain.PREVU);
             voyageRepository.save(lesvoyages.get(i));
             trainRepository.save(lesvoyages.get(i).getTrain());
