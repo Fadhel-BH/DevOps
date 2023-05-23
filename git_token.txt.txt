@@ -2,10 +2,20 @@
 /usr/local/src/apache-maven
 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
 docker pass : 
-
+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
 u$#DQeu8pMbkQzV
 
 sonar token
-token: ff05167e68033f3f80b181a617d31e286522dc8b
+token: 8b3900f02ebab59b3da822733af2f8698445144e
+
+
+
+
+
+git token : 
+
+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
+
+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
 
 mvn sonar:sonar \ -Dsonar.projectKey=sonarqube \ -Dsonar.host.url=http://172.10.0.141:9000 \ -Dsonar.login=ff05167e68033f3f80b181a617d31e286522dc8b

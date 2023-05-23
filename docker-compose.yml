@@ -4,7 +4,7 @@ services:
     image: 'mysql:5.7'
     restart : always
     environment:
-      - MYSQL_ROOT_PASSWORD=
+      - MYSQL_ROOT_PASSWORD=root
       - MYSQL_USER = root
       - MYSQL_PASSWORD=
       - MYSQL_DATABASE=devops2
