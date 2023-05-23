@@ -2,22 +2,18 @@ version: '3'
 services:
   mysql-standalone:
     image: 'mysql:5.7'
-    restart : always
     environment:
-      - MYSQL_ROOT_PASSWORD=
-      - MYSQL_USER=root
+      - MYSQL_ROOT_PASSWORD=root
       - MYSQL_PASSWORD=
-      - MYSQL_DATABASE=devops2
+      - MYSQL_DATABASE=devops
     ports:
-      - "3306:3306"
+      - "3307:3306"
   springboot-docker-container:
-    image: albenhassine/myimage-springrepo
-    links:
-      - mysql-standalone:app_db
+    image: springboot-docker-container
     ports:
       - "8089:8089"
     environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://app_db:3306/devops2?autoReconnect=true&useSSL=false
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql-standalone:3306/devops?autoReconnect=true&useSSL=false
       SPRING_DATASOURCE_USERNAME: "root"
       SPRING_DATASOURCE_PASSWORD: ""
     build:
