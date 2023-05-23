@@ -3,7 +3,7 @@ services:
   mysql-standalone:
     image: 'mysql:5.7'
     environment:
-      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_ROOT_PASSWORD=
       - MYSQL_PASSWORD=
       - MYSQL_DATABASE=devops2
     ports:
