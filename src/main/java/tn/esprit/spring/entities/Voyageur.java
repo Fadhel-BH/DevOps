@@ -21,7 +21,7 @@ public class Voyageur implements Serializable{
 	String nomVoyageur;
 
 	
-	public List<Voyage> getMesvoyages() {
+	private List<Voyage> getMesvoyages() {
 		return mesvoyages;
 	}
 
