@@ -7,11 +7,12 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import tn.esprit.spring.DTO.voyageDTO;
 import tn.esprit.spring.entities.Ville;
 import tn.esprit.spring.entities.Voyage;
 
 @Repository
-public interface VoyageRepository extends CrudRepository<Voyage, Long> {
+public interface VoyageRepository extends CrudRepository<voyageDTO, Long> {
 
 	
 	@Query("select v from Voyage v where v.gareDepart=:ngdept and v.gareArrivee=:ngarr and v.heureDepart=:hdpt")

@@ -9,7 +9,7 @@ import java.util.Date;
 import java.util.List;
 
 public class voyageDTO {
-    private Long idVoyage;
+
 
 
     long codeVoyage;
@@ -27,16 +27,16 @@ public class voyageDTO {
     @Temporal(TemporalType.DATE)
     private Date dateArrivee;
 
-    private double heureDepart;
-
-    private double heureArrivee;
 
     @ManyToOne
-    Train train;
+    TrainDTO train;
 
 
     @ManyToMany
     private List<Voyageur> mesVoyageurs;
 
 
+    public void setTrain(TrainDTO train) {
+        this.train = train;
+    }
 }

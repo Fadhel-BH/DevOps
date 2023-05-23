@@ -6,7 +6,6 @@ import javax.persistence.ManyToMany;
 import java.util.List;
 
 public class VoyageurDTO {
-    private Long idVoyageur;
 
     String nomVoyageur;
 

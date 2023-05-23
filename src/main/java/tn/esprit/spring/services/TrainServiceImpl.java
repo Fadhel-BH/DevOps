@@ -29,7 +29,7 @@ import org.springframework.scheduling.annotation.Scheduled;
 @Service
 public class TrainServiceImpl implements ITrainService {
 
-
+    private static final String TAILLE = "taille";
     @Autowired
     VoyageurRepository VoyageurRepository;
 
@@ -51,7 +51,7 @@ public class TrainServiceImpl implements ITrainService {
         int occ = 0;
 
             List<Voyage> listvoyage = (List<Voyage>) voyageRepository.findAll();
-            System.out.println("tailee" + listvoyage.size());
+            System.out.println(TAILLE + listvoyage.size());
 
             for (int i = 0; i < listvoyage.size(); i++) {
                 System.out.println("gare" + nomGareDepart + "value" + listvoyage.get(0).getGareDepart());
@@ -98,12 +98,11 @@ return cpt/1;
     @Transactional
     public void affecterTainAVoyageur(Long idVoyageur, Ville nomGareDepart, Ville nomGareArrivee, double heureDepart) {
 
-         String taille = "taille";
-        System.out.println(taille + "test");
+        System.out.println(TAILLE + "test");
         Voyageur c = VoyageurRepository.findById(idVoyageur).get();
         List<Voyage> lesvoyages = new ArrayList<>();
         lesvoyages = voyageRepository.RechercheVoyage(nomGareDepart, nomGareDepart, heureDepart);
-        System.out.println(taille + lesvoyages.size());
+        System.out.println(TAILLE + lesvoyages.size());
         for (int i = 0; i < lesvoyages.size(); i++) {
             if (lesvoyages.get(i).getTrain().getNbPlaceLibreDTO() != 0) {
                 lesvoyages.get(i).getMesVoyageurs().add(c);

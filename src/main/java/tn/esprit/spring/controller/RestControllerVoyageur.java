@@ -71,7 +71,7 @@ public class RestControllerVoyageur {
 
     @GetMapping(value = "/TrainPlacesLibres/{nomgdpt}")
     public int TrainPlacesLibres(@PathVariable("nomgdpt") Ville nomGareDepart) {
-        System.out.println("in controller" + nomGareDepart);
+        System.err.println("in controller" + nomGareDepart);
         return itrainservice.TrainPlacesLibres(nomGareDepart);
     }
 

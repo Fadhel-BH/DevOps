@@ -20,7 +20,9 @@ public class PerformanceAspect {
             long start = System.currentTimeMillis();
             Object out=pjp.proceed();
             long elapsedTime = System.currentTimeMillis() - start;
-            logger.info("Method execution time: " + elapsedTime + " milliseconds.");
+            if (elapsedTime!=0) {
+                throw new IllegalStateException("Method execution time: " + elapsedTime + " milliseconds.");
+            }
             return out;
     }
 

@@ -19,7 +19,7 @@ import java.util.logging.Level;
 public class LoggingAspect {
 
 
-private static final Logger logger = LogManager.getLogger(LoggingAspect.class);
+
 @Before("execution(* tn.esprit.spring.service.*.set*(..))")
 public void logMethodEntry(JoinPoint joinPoint) {
 String name = joinPoint.getSignature().getName();
@@ -29,8 +29,8 @@ String name = joinPoint.getSignature().getName();
 }
 @After("execution(* tn.esprit.spring.service.*.set*(..))")
 public void logMethodExit(JoinPoint joinPoint) {
-	String name = joinPoint.getSignature().getName();
-	if (name.isEmpty()) {
-		throw new IllegalStateException("in method: " +name);
+	String joinname = joinPoint.getSignature().getName();
+	if (joinname.isEmpty()) {
+		throw new IllegalStateException("in method: " +joinname);
 	}
 }}
