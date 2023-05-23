@@ -73,7 +73,7 @@ public class TrainServiceImpl implements ITrainService {
         for (int i = 0; i < lesvoyage.size(); i++) {
             if (lesvoyage.get(i).getGareDepart() == nomGareDepart) {
                 for (int j = 0; j < lesvoyage.size(); j++) {
-                    if (lesvoyage.get(i).getGareArrivee() == lesvoyage.get(j).getGareDepart() & lesvoyage.get(j).getGareArrivee() == nomGareArrivee) {
+                    if (lesvoyage.get(i).getGareArrivee() == lesvoyage.get(j).getGareDepart() && lesvoyage.get(j).getGareArrivee() == nomGareArrivee) {
                         lestrainsRes.add(lesvoyage.get(i).getTrain());
                         lestrainsRes.add(lesvoyage.get(j).getTrain());
 

@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
+import tn.esprit.spring.DTO.TrainDTO;
+import tn.esprit.spring.DTO.VoyageurDTO;
 import tn.esprit.spring.entities.Voyageur;
 import tn.esprit.spring.entities.Train;
 import tn.esprit.spring.entities.Ville;
@@ -39,14 +41,15 @@ public class RestControllerVoyageur {
     ////http://localhost:8083/SpringMVC/servlet/ajouterTrain
     @PostMapping("/ajouterTrain")
     @ResponseBody
-    public void ajouterTrain(@RequestBody Train train) {
+    public void ajouterTrain(@RequestBody TrainDTO train) {
+
         itrainservice.ajouterTrain(train);
     }
 
     ////http://localhost:8083/SpringMVC/servlet/ajouterVoyageur
     @PostMapping("/ajouterVoyageur")
     @ResponseBody
-    public void ajouterVoyageur(@RequestBody Voyageur Voyageur) {
+    public void ajouterVoyageur(@RequestBody VoyageurDTO Voyageur) {
         iVoyageurservice.ajouterVoyageur(Voyageur);
     }
 
