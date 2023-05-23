@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import tn.esprit.spring.DTO.TrainDTO;
 import tn.esprit.spring.DTO.VoyageurDTO;
+import tn.esprit.spring.DTO.voyageDTO;
 import tn.esprit.spring.entities.Voyageur;
 import tn.esprit.spring.entities.Train;
 import tn.esprit.spring.entities.Ville;
@@ -33,8 +34,8 @@ public class RestControllerVoyageur {
     //http://localhost:8083/SpringMVC/servlet/ajouterVoyage
     @PostMapping("/ajouterVoyage")
     @ResponseBody
-    public void ajouterGare(@RequestBody Voyage voiture) {
-        ivoyageservice.ajouterVoyage(voiture);
+    public void ajouterGare(@RequestBody voyageDTO voyage) {
+        ivoyageservice.ajouterVoyage(voyage);
     }
 
 
@@ -81,7 +82,7 @@ public class RestControllerVoyageur {
     }
 
     @RequestMapping(value = "/ListerTrainsIndirects/{nomgdpt}/{nomgarr}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Train> ListerTrainsIndirects(@PathVariable("nomgdpt") Ville nomGareDepart, @PathVariable("nomgarr") Ville nomGareArrivee) {
+    public List<TrainDTO> ListerTrainsIndirects(@PathVariable("nomgdpt") Ville nomGareDepart, @PathVariable("nomgarr") Ville nomGareArrivee) {
         return itrainservice.ListerTrainsIndirects(nomGareDepart, nomGareArrivee);
     }
 

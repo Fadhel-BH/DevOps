@@ -6,7 +6,7 @@ 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
 u$#DQeu8pMbkQzV
 
 sonar token
-token: 8b3900f02ebab59b3da822733af2f8698445144e
+token: 84573209ba0295e49651f61dfb0f717df1fd7278
 
 
 

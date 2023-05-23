@@ -1,0 +1,6 @@
+projectKey=token
+serverUrl=http://172.10.0.141:9000
+serverVersion=8.9.7.52159
+dashboardUrl=http://172.10.0.141:9000/dashboard?id=token
+ceTaskId=AYhJYFK7_IOVI_uHYoEE
+ceTaskUrl=http://172.10.0.141:9000/api/ce/task?id=AYhJYFK7_IOVI_uHYoEE

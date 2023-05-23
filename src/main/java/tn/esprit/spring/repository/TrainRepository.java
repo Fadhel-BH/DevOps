@@ -7,6 +7,7 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import tn.esprit.spring.DTO.TrainDTO;
 import tn.esprit.spring.entities.Train;
 import tn.esprit.spring.entities.Voyage;
 
@@ -14,7 +15,7 @@ import tn.esprit.spring.entities.Voyage;
 
 
 @Repository
-public interface TrainRepository extends CrudRepository<Train, Long> {
+public interface TrainRepository extends CrudRepository<TrainDTO, Long> {
 	
 
 	

@@ -10,7 +10,7 @@ public interface ITrainService {
      void ajouterTrain(TrainDTO t);
      void affecterTainAVoyageur(Long   idVoyageur, Ville nomGareDepart, Ville nomGareArrivee,  double heureDepart);
      int TrainPlacesLibres(Ville nomGareDepart);
-     List<Train> ListerTrainsIndirects(Ville nomGareDepart, Ville nomGareArrivee);
+     List<TrainDTO> ListerTrainsIndirects(Ville nomGareDepart, Ville nomGareArrivee);
      void DesaffecterVoyageursTrain(Ville nomGareDepart, Ville nomGareArrivee, double heureDepart);
      void TrainsEnGare();
 }

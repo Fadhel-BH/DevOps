@@ -1,6 +1,7 @@
 package tn.esprit.spring.services;
 
 import org.springframework.stereotype.Service;
+import tn.esprit.spring.DTO.TrainDTO;
 import tn.esprit.spring.entities.Train;
 import tn.esprit.spring.entities.Ville;
 import tn.esprit.spring.entities.Voyage;
@@ -40,7 +41,7 @@ public class TrainServiceImpl implements ITrainService {
     VoyageRepository voyageRepository;
 
 
-    public void ajouterTrain(Train t) {
+    public void ajouterTrain(TrainDTO t) {
 
         trainRepository.save(t);
     }
@@ -48,26 +49,30 @@ public class TrainServiceImpl implements ITrainService {
     public int TrainPlacesLibres(Ville nomGareDepart) {
         int cpt = 0;
         int occ = 0;
-        List<Voyage> listvoyage = (List<Voyage>) voyageRepository.findAll();
-        System.out.println("tailee" + listvoyage.size());
 
-        for (int i = 0; i < listvoyage.size(); i++) {
-            System.out.println("gare" + nomGareDepart + "value" + listvoyage.get(0).getGareDepart());
-            if (listvoyage.get(i).getGareDepart() == nomGareDepart) {
-                cpt = cpt + listvoyage.get(i).getTrain().getNbPlaceLibre();
-                occ = occ + 1;
-                System.out.println("cpt " + cpt);
-            } else {
+            List<Voyage> listvoyage = (List<Voyage>) voyageRepository.findAll();
+            System.out.println("tailee" + listvoyage.size());
+
+            for (int i = 0; i < listvoyage.size(); i++) {
+                System.out.println("gare" + nomGareDepart + "value" + listvoyage.get(0).getGareDepart());
+                if (listvoyage.get(i).getGareDepart() == nomGareDepart) {
+                    cpt = cpt + listvoyage.get(i).getTrain().getNbPlaceLibre();
+                    occ = occ + 1;
+                    System.out.println("cpt " + cpt);
+                }
+                if (occ!=0) {
+                    return cpt / occ;  }
 
             }
-        }
-        return cpt / occ;
+
+return cpt/1;
+
     }
 
 
-    public List<Train> ListerTrainsIndirects(Ville nomGareDepart, Ville nomGareArrivee) {
+    public List<TrainDTO> ListerTrainsIndirects(Ville nomGareDepart, Ville nomGareArrivee) {
 
-        List<Train> lestrainsRes = new ArrayList<>();
+        List<TrainDTO> lestrainsRes = new ArrayList<>();
         List<Voyage> lesvoyage = new ArrayList<>();
         lesvoyage = (List<Voyage>) voyageRepository.findAll();
         for (int i = 0; i < lesvoyage.size(); i++) {
@@ -89,7 +94,6 @@ public class TrainServiceImpl implements ITrainService {
         return lestrainsRes;
         //
     }
-
 
     @Transactional
     public void affecterTainAVoyageur(Long idVoyageur, Ville nomGareDepart, Ville nomGareArrivee, double heureDepart) {
@@ -120,7 +124,7 @@ public class TrainServiceImpl implements ITrainService {
             for (int j = 0; j < lesvoyages.get(i).getMesVoyageurs().size(); j++)
                 lesvoyages.get(i).getMesVoyageurs().remove(j);
             lesvoyages.get(i).getTrain().setNbPlaceLibre(lesvoyages.get(i).getTrain().getNbPlaceLibre() + 1);
-            lesvoyages.get(i).getTrain().setEtat(etatTrain.prevu);
+            lesvoyages.get(i).getTrain().setEtat(etatTrain.PREVU);
             voyageRepository.save(lesvoyages.get(i));
             trainRepository.save(lesvoyages.get(i).getTrain());
         }
