@@ -44,7 +44,7 @@ pipeline {
                             nexusUrl: '172.10.0.141:8081',
                             groupId: 'tn.esprit.spring',
                             version: '1.0',
-                            repository: 'devops-projet-releases',
+                            repository: 'nexus3',
                             credentialsId: 'nexus_creds',
                             artifacts: [
                                 [artifactId: 'ExamThourayaS2-0.0.1-SNAPSHOT.jar',
