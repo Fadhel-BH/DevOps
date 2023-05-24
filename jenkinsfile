@@ -68,11 +68,11 @@ pipeline {
         }
                stage('docker-push') {
                  steps {
-                      {
+                      
                        sh 'docker login -u fadhelbh -p u$#DQeu8pMbkQzV'
                        sh 'docker tag fadhelbh/springdocker fadhelbh/springdocker:v1'
                        sh 'docker push fadhelbh/springdocker:v1'
-                      }
+                      
                  }
                } 
                  stage('Docker-compose-run') {
