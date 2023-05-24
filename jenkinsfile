@@ -57,10 +57,10 @@ pipeline {
         }
         stage('docker-build') {
             steps {
-                sh 'curl -u admin:admin -O http://localhost:8081/nexus/repository/devOps-project-releases/com/esprit/examen/tpAchatProject/1.0/tpAchatProject-1.0.jar'
+                sh 'curl -u admin:admin -O http://localhost:8081/nexus/repository/devOps-project-releases/tn/esprit/spring/1.0/ExamThourayaS2-0.0.1-SNAPSHOT.jar'
                 script {
                             docker.withRegistry('https://index.docker.io/v1', 'dockerhub_creds') {
-                            def image = docker.build('hedikamoun1911/devops-project', '-f Dockerfile --build-arg JAR_FILE=tpAchatProject-1.0.jar .')
+                            def image = docker.build('fadhelbh/springdocker', '-f dockerfile .')
                             }
                 }
 
@@ -69,22 +69,12 @@ pipeline {
                stage('docker-push') {
                  steps {
                      withCredentials([usernamePassword(credentialsId: 'dockerhub_creds', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
-                       sh "docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD"
-                       sh "docker tag hedikamoun1911/devops-project hedikamoun1911/devops-project:v1"
-                       sh "docker push hedikamoun1911/devops-project:v1"
+                       sh "docker login -u fadhelbh -p u$#DQeu8pMbkQzV"
+                       sh "docker tag fadhelbh/springdocker fadhelbh/springdocker:v1"
+                       sh "docker push fadhelbh/springdocker:v1"
                       }
                  }
                } 
-               stage('docker-pull') {
-                  steps {
-                    script {
-                      def imageName = "hedikamoun1911/devops-project:v1"
-                      docker.withRegistry("https://registry.hub.docker.com", "dockerhub_creds") {
-                        docker.image(imageName).pull()
-                      }
-                    }
-                  }
-                }
                  stage('Docker-compose-run') {
           steps {
             // Copy the docker-compose.yml file to the workspace
