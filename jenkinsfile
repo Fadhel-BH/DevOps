@@ -41,10 +41,10 @@ pipeline {
                         nexusArtifactUploader(
                             nexusVersion: 'nexus3',
                             protocol: 'http',
-                            nexusUrl: '172.10.0.141:8081/nexus',
+                            nexusUrl: '172.10.0.141:8081',
                             groupId: 'tn.esprit.spring',
                             version: '1.0',
-                            repository: 'devOps-project-releases',
+                            repository: 'devops-projet-releases',
                             credentialsId: 'nexus_creds',
                             artifacts: [
                                 [artifactId: 'app.jar',
