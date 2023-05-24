@@ -135,7 +135,7 @@ return cpt/1;
     public void DesaffecterVoyageursTrain(Ville nomGareDepart, Ville nomGareArrivee, double heureDepart) {
         List<voyageDTO> lesvoyages = new ArrayList<>();
         lesvoyages = voyageRepository.RechercheVoyage(nomGareDepart, nomGareArrivee, heureDepart);
-        System.out.println("taille" + lesvoyages.size());
+        System.out.println(TAILLE + lesvoyages.size());
 
         for (int i = 0; i < lesvoyages.size(); i++) {
             for (int j = 0; j < lesvoyages.get(i).getMesVoyageursDTO().size(); j++)
