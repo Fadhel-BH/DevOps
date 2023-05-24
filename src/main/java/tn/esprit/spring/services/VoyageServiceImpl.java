@@ -5,12 +5,12 @@ import org.springframework.stereotype.Service;
 
 import tn.esprit.spring.DTO.TrainDTO;
 import tn.esprit.spring.DTO.voyageDTO;
-import tn.esprit.spring.entities.Train;
 import tn.esprit.spring.entities.Voyage;
 import tn.esprit.spring.repository.TrainRepository;
 import tn.esprit.spring.repository.VoyageRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class VoyageServiceImpl implements IVoyageService {
@@ -33,22 +33,27 @@ public class VoyageServiceImpl implements IVoyageService {
 
     public void affecterTrainAVoyage(Long idTrain, Long idVoyage) {
 
-        TrainDTO t = trainRepository.findById(idTrain).get();
-        voyageDTO v = voyageRepository.findById(idVoyage).get();
-        v.setTrainDTO(t);
-        voyageRepository.save(v);
+        Optional<TrainDTO> t = trainRepository.findById(idTrain);
+
+        if (t.isPresent()) {
+            t.get();
+        }
+        Optional<voyageDTO> v =voyageRepository.findById(idVoyage);
+        if (v.isPresent()) {
+            v.get();
+        }
+        v.get().setTrainDTO(t);
+        voyageRepository.save(v.get());
     }
 
     @Override
     public List<voyageDTO> recupererAll() {
-        List<voyageDTO> list = (List<voyageDTO>) voyageRepository.findAll();
-        return list;
+        return (List<voyageDTO>) voyageRepository.findAll();
     }
 
     @Override
     public voyageDTO recupererVoyageParId(long idVoyage) {
-        voyageDTO v = voyageRepository.findById(idVoyage).orElse(null);
-        return v;
+        return voyageRepository.findById(idVoyage).orElse(null);
     }
 
     @Override

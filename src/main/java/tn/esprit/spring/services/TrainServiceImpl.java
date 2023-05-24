@@ -25,6 +25,9 @@ import org.springframework.transaction.annotation.Transactional;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.text.ParseException;
+import java.util.Optional;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.springframework.scheduling.annotation.Scheduled;
 
@@ -51,14 +54,18 @@ public class TrainServiceImpl implements ITrainService {
     public int TrainPlacesLibres(Ville nomGareDepart) {
         int cpt = 0;
         int occ = 0;
+        Logger logger
+                = Logger.getLogger(
+                TrainServiceImpl.class.getName());
 
             List<voyageDTO> listvoyage = (List<voyageDTO>) voyageRepository.findAll();
-            System.out.println(TAILLE + listvoyage.size());
+        logger.log(Level.SEVERE, "in controller {0}.",TAILLE+listvoyage.size());
 
             for (int i = 0; i < listvoyage.size(); i++) {
-                System.out.println("gare" + nomGareDepart + "value" + listvoyage.get(0).getGareDepartDTO());
+                logger.log(Level.SEVERE, "in controller {0}.","gare" + nomGareDepart + "value" + listvoyage.get(0).getGareDepartDTO());
+
                 if (listvoyage.get(i).getGareDepartDTO() == nomGareDepart) {
-                    cpt = cpt + listvoyage.get(i).getTrainDTO().getNbPlaceLibreDTO();
+                    cpt = cpt + listvoyage.get(i).getTrainDTO().get().getNbPlaceLibreDTO();
                     occ = occ + 1;
                     System.out.println("cpt " + cpt);
                 }
@@ -81,8 +88,8 @@ return cpt/1;
             if (lesvoyage.get(i).getGareDepartDTO() == nomGareDepart) {
                 for (int j = 0; j < lesvoyage.size(); j++) {
                     if (lesvoyage.get(i).getGareArriveeDTO() == lesvoyage.get(j).getGareDepartDTO() && lesvoyage.get(j).getGareArriveeDTO() == nomGareArrivee) {
-                        lestrainsRes.add(lesvoyage.get(i).getTrainDTO());
-                        lestrainsRes.add(lesvoyage.get(j).getTrainDTO());
+                        lestrainsRes.add(lesvoyage.get(i).getTrainDTO().get());
+                        lestrainsRes.add(lesvoyage.get(j).getTrainDTO().get());
 
                     } else {
 
@@ -100,19 +107,28 @@ return cpt/1;
     @Transactional
     public void affecterTainAVoyageur(Long idVoyageurDTO, Ville nomGareDepart, Ville nomGareArrivee, double heureDepart) {
 
-        System.out.println(TAILLE + "test");
-        VoyageurDTO c = VoyageurRepository.findById(idVoyageurDTO).get();
-        List<voyageDTO> lesvoyages = new ArrayList<>();
-        lesvoyages = voyageRepository.RechercheVoyage(nomGareDepart, nomGareDepart, heureDepart);
-        System.out.println(TAILLE + lesvoyages.size());
-        for (int i = 0; i < lesvoyages.size(); i++) {
-            if (lesvoyages.get(i).getTrainDTO().getNbPlaceLibreDTO() != 0) {
-                lesvoyages.get(i).getMesVoyageursDTO().add(c);
-                lesvoyages.get(i).getTrainDTO().setNbPlaceLibreDTO(lesvoyages.get(i).getTrainDTO().getNbPlaceLibreDTO() - 1);
-            } else
-                System.out.print("Pas de place disponible pour " + VoyageurRepository.findById(idVoyageurDTO).get().getNomVoyageurDTO());
-            voyageRepository.save(lesvoyages.get(i));
+
+        Optional<VoyageurDTO> value = VoyageurRepository.findById(idVoyageurDTO);
+        if (value.isPresent()) {
+            value.get();
         }
+        System.out.println(TAILLE + "test");
+
+
+            List<voyageDTO> lesvoyages = new ArrayList<>();
+            lesvoyages = voyageRepository.RechercheVoyage(nomGareDepart, nomGareDepart, heureDepart);
+            System.out.println(TAILLE + lesvoyages.size());
+            for (int i = 0; i < lesvoyages.size(); i++) {
+                if (lesvoyages.get(i).getTrainDTO().get().getNbPlaceLibreDTO() != 0) {
+                    lesvoyages.get(i).getMesVoyageursDTO().add(value);
+                    lesvoyages.get(i).getTrainDTO().get().setNbPlaceLibreDTO(lesvoyages.get(i).getTrainDTO().get().getNbPlaceLibreDTO() - 1);
+                }
+                else
+
+                    System.out.print("Pas de place disponible pour ");
+                voyageRepository.save(lesvoyages.get(i));
+            }
+
     }
 
     @Override
@@ -124,10 +140,10 @@ return cpt/1;
         for (int i = 0; i < lesvoyages.size(); i++) {
             for (int j = 0; j < lesvoyages.get(i).getMesVoyageursDTO().size(); j++)
                 lesvoyages.get(i).getMesVoyageursDTO().remove(j);
-            lesvoyages.get(i).getTrainDTO().setNbPlaceLibreDTO(lesvoyages.get(i).getTrainDTO().getNbPlaceLibreDTO() + 1);
-            lesvoyages.get(i).getTrainDTO().setEtat(etatTrain.PREVU);
+            lesvoyages.get(i).getTrainDTO().get().setNbPlaceLibreDTO(lesvoyages.get(i).getTrainDTO().get().getNbPlaceLibreDTO() + 1);
+            lesvoyages.get(i).getTrainDTO().get().setEtat(etatTrain.PREVU);
             voyageRepository.save(lesvoyages.get(i));
-            trainRepository.save(lesvoyages.get(i).getTrainDTO());
+            trainRepository.save(lesvoyages.get(i).getTrainDTO().get());
         }
     }
 
@@ -135,14 +151,14 @@ return cpt/1;
     public void TrainsEnGare() {
         List<voyageDTO> lesvoyages = new ArrayList<>();
         lesvoyages = (List<voyageDTO>) voyageRepository.findAll();
-        System.out.println("taille" + lesvoyages.size());
+        System.out.println(TAILLE + lesvoyages.size());
 
         Date date = new Date();
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
         System.out.println("In Schedular After Try");
         for (int i = 0; i < lesvoyages.size(); i++) {
             if (lesvoyages.get(i).getDateArriveeDTO().before(date)) {
-                System.out.println("les trains sont " + lesvoyages.get(i).getTrainDTO().getCodeTrain());
+                System.out.println("les trains sont " + lesvoyages.get(i).getTrainDTO().get().getCodeTrain());
             }
             else{
 

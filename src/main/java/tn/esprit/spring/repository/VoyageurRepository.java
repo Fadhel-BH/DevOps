@@ -9,6 +9,6 @@ import tn.esprit.spring.entities.Voyageur;
 
 
 @Repository
-public interface VoyageurRepository extends CrudRepository<VoyageurDTO, Long> {
+public interface VoyageurRepository extends CrudRepository<tn.esprit.spring.DTO.VoyageurDTO, Long> {
 
 }

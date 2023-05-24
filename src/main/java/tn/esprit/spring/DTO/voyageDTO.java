@@ -2,11 +2,11 @@ package tn.esprit.spring.DTO;
 
 import tn.esprit.spring.entities.Train;
 import tn.esprit.spring.entities.Ville;
-import tn.esprit.spring.entities.Voyageur;
 
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 public class voyageDTO {
 
@@ -29,17 +29,20 @@ public class voyageDTO {
 
 
     @ManyToOne
-    TrainDTO train;
-    private List<VoyageurDTO> mesVoyageurs;
-    
+    Optional<TrainDTO> train;
+    private List<Optional<VoyageurDTO>> mesVoyageurs;
+
     public Ville getGareDepartDTO() {
         return gareDepart;
     }
     public Ville getGareArriveeDTO() {
         return gareArrivee;
     }
-    public void setTrainDTO(TrainDTO train) {
+    public void setTrainDTO(Optional<TrainDTO> train) {
         this.train = train;
+    }
+    public Optional<TrainDTO> getTrainDTO() {
+        return train;
     }
 
     public Date getDateDepartDTO() {
@@ -63,17 +66,14 @@ public class voyageDTO {
 
 
 
-    public List<VoyageurDTO> getMesVoyageursDTO() {
+    public List<Optional<VoyageurDTO>> getMesVoyageursDTO() {
         return mesVoyageurs;
     }
 
 
-    public void setMesVoyageursDTO(List<VoyageurDTO> mesVoyageurs) {
+    public void setMesVoyageursDTO(List<Optional<VoyageurDTO>> mesVoyageurs) {
         this.mesVoyageurs = mesVoyageurs;
     }
 
 
-    public TrainDTO getTrainDTO() {
-        return train;
-    }
 }

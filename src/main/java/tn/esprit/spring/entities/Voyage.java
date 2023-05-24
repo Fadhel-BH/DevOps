@@ -21,7 +21,6 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import tn.esprit.spring.DTO.TrainDTO;
 
 
 @Entity
@@ -52,7 +51,7 @@ public class Voyage  implements Serializable {
 	private double heureArrivee;
 	
 	@ManyToOne
-	TrainDTO train;
+	Train train;
 	
 	
 	@ManyToMany
@@ -139,13 +138,13 @@ public class Voyage  implements Serializable {
 	}
 
 
-	public TrainDTO getTrain() {
+	public Train getTrain() {
 		return train;
 	}
 
 
 
-	public void setTrain(TrainDTO train) {
+	public void setTrain(Train train) {
 		this.train = train;
 	}
 
