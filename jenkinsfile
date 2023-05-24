@@ -2,7 +2,7 @@ pipeline {
         
         agent any
         environment {
-            PATH = "/usr/local/src/apache-maven/bin:$PATH"
+            PATH = "/usr/share/maven/bin:$PATH"
         }
         stages {
             stage('CHECKOUT GIT') {
@@ -11,7 +11,7 @@ pipeline {
                     echo 'Pulling...';
                     git branch: 'main',
                     url: 'https://github.com/Fadhel-BH/DevOps.git',
-                    credentialsId: 'd07792a9-ebc0-4cad-a007-92354abedd2c';
+                    credentialsId: '49c6b959-f4d8-4771-b2b9-adce2dc888fc';
                 }
             }
             stage('BUILD') {
