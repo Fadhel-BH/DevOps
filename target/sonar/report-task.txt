@@ -1,0 +1,6 @@
+projectKey=token
+serverUrl=http://192.168.56.77:9000
+serverVersion=8.9.7.52159
+dashboardUrl=http://192.168.56.77:9000/dashboard?id=token
+ceTaskId=AYhEofGRHWuS5a9NMKLq
+ceTaskUrl=http://192.168.56.77:9000/api/ce/task?id=AYhEofGRHWuS5a9NMKLq
