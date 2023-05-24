@@ -41,15 +41,15 @@ pipeline {
                         nexusArtifactUploader(
                             nexusVersion: 'nexus3',
                             protocol: 'http',
-                            nexusUrl: 'localhost:8081/nexus',
-                            groupId: 'com.esprit.examen',
+                            nexusUrl: '172.10.0.141:8081/nexus',
+                            groupId: 'tn.esprit.spring',
                             version: '1.0',
                             repository: 'devOps-project-releases',
                             credentialsId: 'nexus_creds',
                             artifacts: [
-                                [artifactId: 'tpAchatProject',
+                                [artifactId: 'app.jar',
                                  classifier: '',
-                                 file: 'target/tpAchatProject-1.0.jar',
+                                 file: 'target/app.jar',
                                  type: 'jar']
                             ]
                          )

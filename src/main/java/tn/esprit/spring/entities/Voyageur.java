@@ -16,7 +16,7 @@ public class Voyageur implements Serializable{
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long idVoyageur;
+	private Long idVoyageurDTO;
 	
 	String nomVoyageur;
 
@@ -31,11 +31,11 @@ public class Voyageur implements Serializable{
     private List<Voyage> mesvoyages;
 
 	public Long getIdVoyageur() {
-		return idVoyageur;
+		return idVoyageurDTO;
 	}
 
 	public void setIdVoyageur(Long idVoyageur) {
-		this.idVoyageur = idVoyageur;
+		this.idVoyageurDTO = idVoyageur;
 	}
 
 	public String getNomVoyageur() {

@@ -9,7 +9,7 @@ public interface IVoyageService {
 
 	 void ajouterVoyage(voyageDTO v);
 	 void modifierVoyage(voyageDTO v);
-	 //public void affecterTrainAVoyage(Long idTrain, String gareDepart, String  gareArrivee);
+
 	 void affecterTrainAVoyage(Long idTrain, Long idVoyage);
 	 List<voyageDTO> recupererAll();
 	 voyageDTO recupererVoyageParId(long idVoyage);

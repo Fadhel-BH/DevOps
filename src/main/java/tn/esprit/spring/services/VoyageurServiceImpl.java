@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
+import tn.esprit.spring.DTO.VoyageurDTO;
 import tn.esprit.spring.entities.Voyageur;
 
 
@@ -23,24 +24,21 @@ public class VoyageurServiceImpl implements IVoyageurService{
 	@Autowired
 	VoyageurRepository voyageurRepository;
 
-//	
-//	private static final Logger l = LogManager.getLogger(voyageurServiceImpl.class);
-//	
-	public void ajouterVoyageur(Voyageur voyageur) {
+	public void ajouterVoyageur(VoyageurDTO voyageur) {
 		voyageurRepository.save(voyageur);
 		
     }
 
 	@Override
-	public void modifierVoyageur(Voyageur voyageur) {
+	public void modifierVoyageur(VoyageurDTO voyageur) {
 		voyageurRepository.save(voyageur);
 	}
 
 	@Override
-	public List<Voyageur> recupererAll() {
-		List<Voyageur> list= (List<Voyageur>) voyageurRepository.findAll();
+	public List<VoyageurDTO> recupererAll() {
+		List<VoyageurDTO> list= (List<VoyageurDTO>) voyageurRepository.findAll();
 		//Afficher la liste des voyageurs
-		for (Voyageur v: list) {
+		for (VoyageurDTO v: list) {
 			System.err.print("Voyageur");
 			System.out.print(v.toString()+"\n");
 		}
@@ -48,13 +46,13 @@ public class VoyageurServiceImpl implements IVoyageurService{
 	}
 
 	@Override
-	public Voyageur recupererVoyageParId(long idVoyageur) {
-		//TODO
+	public VoyageurDTO recupererVoyageParId(long idVoyageurDTO) {
+
 		return null;
 	}
 
 	@Override
-	public void supprimerVoyageur(Voyageur v) {
+	public void supprimerVoyageur(VoyageurDTO v) {
 		voyageurRepository.delete(v);
 	}
 

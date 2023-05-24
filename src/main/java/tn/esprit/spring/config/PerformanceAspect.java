@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 public class PerformanceAspect {
 	
 
-	private static final Logger logger = LogManager.getLogger(PerformanceAspect.class);
+
 
 	@Around("execution(int tn.esprit.spring.services.*.*(..))")
     public Object profile(ProceedingJoinPoint pjp) throws Throwable {

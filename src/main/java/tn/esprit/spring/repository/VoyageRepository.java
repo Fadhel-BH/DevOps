@@ -16,6 +16,6 @@ public interface VoyageRepository extends CrudRepository<voyageDTO, Long> {
 
 	
 	@Query("select v from Voyage v where v.gareDepart=:ngdept and v.gareArrivee=:ngarr and v.heureDepart=:hdpt")
-	List<Voyage>RechercheVoyage(@Param("ngdept")Ville nomGareDepart,@Param("ngarr") Ville nomGareArrive, @Param("hdpt")double heureDepart);
+	List<voyageDTO>RechercheVoyage(@Param("ngdept")Ville nomGareDepart,@Param("ngarr") Ville nomGareArrive, @Param("hdpt")double heureDepart);
 	
 }

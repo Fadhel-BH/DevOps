@@ -30,13 +30,50 @@ public class voyageDTO {
 
     @ManyToOne
     TrainDTO train;
-
-
-    @ManyToMany
-    private List<Voyageur> mesVoyageurs;
-
-
-    public void setTrain(TrainDTO train) {
+    private List<VoyageurDTO> mesVoyageurs;
+    
+    public Ville getGareDepartDTO() {
+        return gareDepart;
+    }
+    public Ville getGareArriveeDTO() {
+        return gareArrivee;
+    }
+    public void setTrainDTO(TrainDTO train) {
         this.train = train;
+    }
+
+    public Date getDateDepartDTO() {
+        return dateDepart;
+    }
+
+
+    public void setDateDepartDTO(Date dateDepart) {
+        this.dateDepart = dateDepart;
+    }
+
+
+    public Date getDateArriveeDTO() {
+        return dateArrivee;
+    }
+
+
+    public void setDateArriveeDTO(Date dateArrivee) {
+        this.dateArrivee = dateArrivee;
+    }
+
+
+
+    public List<VoyageurDTO> getMesVoyageursDTO() {
+        return mesVoyageurs;
+    }
+
+
+    public void setMesVoyageursDTO(List<VoyageurDTO> mesVoyageurs) {
+        this.mesVoyageurs = mesVoyageurs;
+    }
+
+
+    public TrainDTO getTrainDTO() {
+        return train;
     }
 }

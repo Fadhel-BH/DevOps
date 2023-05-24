@@ -1,7 +1,11 @@
 package tn.esprit.spring.controller;
 
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
+import antlr.build.Tool;
+import org.slf4j.event.LoggingEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -71,7 +75,12 @@ public class RestControllerVoyageur {
 
     @GetMapping(value = "/TrainPlacesLibres/{nomgdpt}")
     public int TrainPlacesLibres(@PathVariable("nomgdpt") Ville nomGareDepart) {
-        System.err.println("in controller" + nomGareDepart);
+   // jsjsj
+        Logger logger
+                = Logger.getLogger(
+                RestControllerVoyageur.class.getName());
+            logger.log(Level.SEVERE, "in controller {0}.",nomGareDepart);
+
         return itrainservice.TrainPlacesLibres(nomGareDepart);
     }
 
