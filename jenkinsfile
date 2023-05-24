@@ -68,8 +68,8 @@ pipeline {
         }
                stage('docker-push') {
                  steps {
-                     withCredentials([usernamePassword(credentialsId: 'dockerhub_creds', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
-                       sh """docker login -u fadhelbh -p u$#DQeu8pMbkQzV"""
+                      {
+                       sh "docker login -u fadhelbh -p u$#DQeu8pMbkQzV"
                        sh "docker tag fadhelbh/springdocker fadhelbh/springdocker:v1"
                        sh "docker push fadhelbh/springdocker:v1"
                       }
