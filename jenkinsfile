@@ -28,7 +28,7 @@ pipeline {
             } 
              stage('Sonar') {
             steps {
-               sh 'mvn sonar:sonar -Dsonar.projectKey=devops -Dsonar.host.url=http://192.168.1.120:9000 -Dsonar.login=49a206b8903e851712a4f238fe2283c40b891b3f'
+               sh 'mvn sonar:sonar -Dsonar.projectKey=devops -Dsonar.host.url=http://http://172.10.0.140:9000 -Dsonar.login=35e439fa48953d8dd8e36cd0aa548c892c8f5fbf'
             }
         }
            stage('Package') {
@@ -41,7 +41,7 @@ pipeline {
                         nexusArtifactUploader(
                             nexusVersion: 'nexus3',
                             protocol: 'http',
-                            nexusUrl: '172.10.0.141:8081/nexus',
+                            nexusUrl: 'http://172.10.0.140:8081/nexus',
                             groupId: 'tn.esprit.spring',
                             version: '1.0',
                             repository: 'devOps-project-releases',
@@ -60,7 +60,7 @@ pipeline {
                 sh 'curl -u admin:admin -O http://localhost:8081/nexus/repository/devOps-project-releases/tn/esprit/spring/1.0/ExamThourayaS2-0.0.1-SNAPSHOT.jar'
                 script {
                             docker.withRegistry('https://index.docker.io/v1', 'dockerhub_creds') {
-                            def image = docker.build('fadhelbh/springdocker', '-f dockerfile .')
+                            def image = docker.build('yassineabd/spring2', '-f dockerfile .')
                             }
                 }
 
@@ -70,9 +70,8 @@ pipeline {
                  steps {
                       
                        sh 'docker login -u fadhelbh -p u$#DQeu8pMbkQzV'
-                       sh 'docker tag fadhelbh/springdocker fadhelbh/springdocker:v1'
-                       sh 'docker push fadhelbh/springdocker:v1'
-                      
+                       sh 'docker tag yassineabd/spring2 yassineabd/spring2:v1'
+                       sh 'docker push yassineabd/spring2:v1'
                  }
                } 
                  stage('Docker-compose-run') {

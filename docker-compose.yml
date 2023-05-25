@@ -1,0 +1,39 @@
+pipeline {
+        
+        agent any
+        environment {
+            PATH = "/usr/share/maven/bin:$PATH"
+        }
+        stages {
+            stage('CHECKOUT GIT') {
+                
+                steps{
+                    echo 'Pulling...';
+                    git branch: 'main',
+                    url: 'https://github.com/Fadhel-BH/DevOps.git',
+                    credentialsId: '49c6b959-f4d8-4771-b2b9-adce2dc888fc';
+                }
+            }
+            stage('BUILD') {
+                steps{
+                    sh 'mvn -f pom.xml clean install'
+                    
+                }
+            }
+            stage('Unit-Test') {
+                steps {
+                    sh 'mvn -f pom.xml clean test' 
+                }
+            //  post {
+                //  always {
+
+                //      junit '**/target/surefire-reports/TEST-*.xml'
+                //  }
+            //  }
+            }
+
+            
+        }
+        
+        
+    }
