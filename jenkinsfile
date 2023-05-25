@@ -28,7 +28,7 @@ pipeline {
             } 
              stage('Sonar') {
             steps {
-               sh 'mvn sonar:sonar -Dsonar.projectKey=devops -Dsonar.host.url=http://http://172.10.0.140:9000 -Dsonar.login=35e439fa48953d8dd8e36cd0aa548c892c8f5fbf'
+               sh 'mvn sonar:sonar -Dsonar.projectKey=devops -Dsonar.host.url=http://172.10.0.140:9000 -Dsonar.login=5365ceea414bddd7bc46e4d5aa30debf16521ad8'
             }
         }
            stage('Package') {
